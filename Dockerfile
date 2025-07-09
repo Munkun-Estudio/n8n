@@ -46,4 +46,4 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
 EXPOSE 5678
 
 # Start n8n using your fork
-ENTRYPOINT ["node", "packages/cli/bin/n8n"]
+CMD ["pnpm", "exec", "n8n"]
