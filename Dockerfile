@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:22.16.0-alpine
 
 # Puppeteer & system dependencies
 RUN apk add --no-cache \
