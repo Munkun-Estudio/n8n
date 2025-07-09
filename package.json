@@ -120,5 +120,8 @@
       "minifaker": "patches/minifaker.patch",
       "z-vue-scan": "patches/z-vue-scan.patch"
     }
+  },
+  "dependencies": {
+    "vite": "catalog:"
   }
 }
