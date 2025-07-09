@@ -1,7 +1,7 @@
 FROM node:22.16.0-slim
 
 # Puppeteer & system dependencies
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
   chromium \
   nss \
   freetype \
@@ -12,7 +12,8 @@ RUN apk add --no-cache \
   ttf-liberation \
   font-noto-emoji \
   python3 \
-  build-base
+  build-essential \
+  && rm -rf /var/lib/apt/lists/*
 
 # Set working directory inside the container
 WORKDIR /usr/src/app
