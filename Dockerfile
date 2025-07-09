@@ -1,4 +1,4 @@
-FROM node:22.16.0-alpine
+FROM node:22.16.0-slim
 
 # Puppeteer & system dependencies
 RUN apk add --no-cache \
@@ -15,18 +15,15 @@ RUN apk add --no-cache \
   build-base
 
 # Set working directory inside the container
-WORKDIR /data
+WORKDIR /usr/src/app
 
 # Copy your forked n8n repo (with cheerio already added)
 COPY . .
 
-# Replace --reporter=append-only with nothing
-RUN find . -name 'package.json' -exec sed -i 's/--reporter=append-only//g' {} +
-
 # Install pnpm and project dependencies
-RUN npm install -g pnpm && \
-    pnpm install && \
-    pnpm build
+RUN npm install -g pnpm
+RUN pnpm install
+RUN pnpm build
 
 # Install custom nodes you previously used
 RUN mkdir -p /home/node/.n8n/nodes && \
