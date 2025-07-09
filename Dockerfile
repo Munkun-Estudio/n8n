@@ -20,6 +20,9 @@ WORKDIR /data
 # Copy your forked n8n repo (with cheerio already added)
 COPY . .
 
+# Replace --reporter=append-only with nothing
+RUN find . -name 'package.json' -exec sed -i 's/--reporter=append-only//g' {} +
+
 # Install pnpm and project dependencies
 RUN npm install -g pnpm && \
     pnpm install && \
