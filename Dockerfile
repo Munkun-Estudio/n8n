@@ -1,7 +1,7 @@
-FROM node:22.16.0-slim
+FROM node:22.16.0-alpine
 
 # Puppeteer & system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
   chromium \
   nss \
   freetype \
@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
   ttf-liberation \
   font-noto-emoji \
   python3 \
-  build-essential \
-  && rm -rf /var/lib/apt/lists/*
+  build-base \
+  && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 
 # Set working directory inside the container
 WORKDIR /usr/src/app
